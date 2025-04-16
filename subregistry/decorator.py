@@ -25,8 +25,6 @@ def add_registry[BaseClass: type](
             can explicitely set `warn_init_subclass=False` to remove this warning.
     """
 
-    print(f"Decorator called: {cls=}")
-
     def decorator(cls):
         # Print warning when decorator is first applied, has to be done this way to work both when decorator called with
         # or without parameters.
@@ -37,6 +35,8 @@ def add_registry[BaseClass: type](
 
         # Add registry and helper methods
         setattr(cls, registry_name, SubclassRegistry())
+        if not exclude_base:
+            getattr(cls, registry_name).register_class(cls)
 
         # Add book-keeping in __init_subclass__
         original_init_subclass = getattr(cls, "__init_subclass__")
@@ -44,8 +44,7 @@ def add_registry[BaseClass: type](
         def new_init_subclass(klass, **kwargs):
             if original_init_subclass:
                 original_init_subclass(**kwargs)
-            if klass != cls or exclude_base is False:
-                getattr(cls, registry_name)._registry.append(klass)
+            getattr(cls, registry_name).register_class(klass)
         setattr(cls, "__init_subclass__", classmethod(new_init_subclass))
 
         return cls
