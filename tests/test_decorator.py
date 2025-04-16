@@ -52,3 +52,27 @@ def test_registry_name_error():
         @add_registry
         class Test:
             registry = object()
+
+
+def test_register_classes():
+
+    @add_registry
+    class Test:
+        pass
+
+    class X(Test):
+        pass
+
+    class Y(Test):
+        pass
+
+    class Z(Y):
+        pass
+
+    assert Test.registry.registry == (X, Y, Z)
+
+
+def test_register_on_import():
+    from tests.classes import Base, A, B, C
+
+    assert Base.registry.registry == (A, B, C)
