@@ -3,8 +3,6 @@ from functools import wraps
 
 from .subclass_registry import SubclassRegistry
 
-def register_device[DeviceSubclass: type[Device]](cls: DeviceSubclass) -> DeviceSubclass:
-    pass
 
 def add_registry[BaseClass: type](
         cls=None, *, registry_name: str = "registry", exclude_base: bool = True, warn_init_subclass: bool = True
