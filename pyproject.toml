@@ -29,9 +29,6 @@ dev = [
     "coverage[toml]",
     "pytest",
 ]
-docs = [
-    "sphinx",
-]
 linting = [
     "ruff",
 ]
