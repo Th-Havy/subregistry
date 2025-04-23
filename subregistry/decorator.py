@@ -4,9 +4,9 @@ from functools import wraps
 from .subclass_registry import SubclassRegistry
 
 
-def add_registry[BaseClass: type](
+def add_registry(
         cls=None, *, registry_name: str = "registry", exclude_base: bool = True, warn_init_subclass: bool = True
-    ) -> BaseClass:
+    ):
     """Adds a registry to the target class.
 
     This registry works through the dunder method `__init_subclass__()`. If it is already defined by the class to which
