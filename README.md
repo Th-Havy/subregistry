@@ -2,6 +2,12 @@
 
 Utility Python library to easily create registries of sub-classes and import them conveniently.
 
+## Installation
+
+```bash
+pip install subregistry
+```
+
 ## Usage
 
 To add a registry to a class, simply import and use the decorator:
