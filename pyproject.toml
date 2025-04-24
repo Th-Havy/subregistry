@@ -35,7 +35,6 @@ linting = [
 
 all = [
   { include-group = "dev" },
-  { include-group = "docs" },
   { include-group = "linting" },
 ]
 
